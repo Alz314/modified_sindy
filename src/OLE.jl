@@ -1,0 +1,51 @@
+module OLE_Module
+    export solve_SINDy
+
+    include("base.jl")
+    import ..SINDy_Base.solve_SINDy
+    using ..SINDy_Base
+    using Optimization , OptimizationOptimJL
+
+
+    # New Data types
+    # ----------------------------------------------------------------------------------
+    mutable struct OLE <: SINDy_Alg
+        x::Vector{Float64}
+        ADType::SciMLBase.AbstractADType
+        opt::Optim.AbstractOptimizer
+        lb::Vector{Float64}
+        ub::Vector{Float64}
+    end
+
+
+    # Constructors for convenience
+    # ----------------------------------------------------------------------------------
+    OLE(x, ADType, opt) = OLE(x, ADType, opt, [0], [0]) # Constructor for no bounds
+
+
+    # Functions 
+    # ----------------------------------------------------------------------------------
+    function solve_SINDy(prob::Modified_SINDy_Problem, OLE_params::OLE)
+        prob.Θ = prob.Lib(prob.u, OLE_params.x)
+    
+        function loss(x, p)
+            prob.Θ = prob.Lib(prob.u, x)
+            Ξes, loss = sparsify(prob)
+            return loss
+        end
+
+        optf = OptimizationFunction(loss, OLE_params.ADType)
+
+        # 
+        if OLE_params.lb == [0] && OLE_params.ub == [0]
+            optprob = OptimizationProblem(optf, OLE_params.x)
+        else
+            optprob = OptimizationProblem(optf, OLE_params.x, lb = OLE_params.lb, ub = OLE_params.ub)
+        end
+
+        OLE_params.x = solve(optprob, OLE_params.opt).u
+    
+        prob.Θ = prob.Lib(prob.u, OLE_params.x)
+        return sparsify(prob)..., OLE_params.x
+    end
+end

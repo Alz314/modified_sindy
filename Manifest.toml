@@ -1399,6 +1399,12 @@ git-tree-sha1 = "cda0aece8080e992f6370491b08ef3909d1c04e7"
 uuid = "476501e8-09a2-5ece-8869-fb82de89a1fa"
 version = "0.6.38"
 
+[[deps.SavitzkyGolay]]
+deps = ["LinearAlgebra"]
+git-tree-sha1 = "2032cd7dc8664036503bec0c1610d9392bf9047e"
+uuid = "c4bf5708-b6a6-4fbe-bcd0-6850ed671584"
+version = "0.6.2"
+
 [[deps.SciMLBase]]
 deps = ["ArrayInterfaceCore", "CommonSolve", "ConstructionBase", "Distributed", "DocStringExtensions", "EnumX", "FunctionWrappersWrappers", "IteratorInterfaceExtensions", "LinearAlgebra", "Logging", "Markdown", "Preferences", "RecipesBase", "RecursiveArrayTools", "Reexport", "RuntimeGeneratedFunctions", "SciMLOperators", "StaticArraysCore", "Statistics", "SymbolicIndexingInterface", "Tables"]
 git-tree-sha1 = "c204bd2e918467bd6cbeea961850ae260e7a5050"

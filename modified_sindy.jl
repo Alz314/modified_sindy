@@ -1,3 +1,7 @@
+"""
+Moving away from using this file
+Use src/Modified_SINDy.jl in the future once that works 
+"""
 using LinearAlgebra
 using DifferentialEquations, ForwardDiff
 using Statistics
