@@ -1,8 +1,8 @@
 module ADO_OLE_Module
     export solve_SINDy
+    export ADO
 
-    include("base.jl")
-    using ..SINDy_Base
+    import ..SINDy_Base: SINDy_Alg, Modified_SINDy_Problem, sparsify, solve_SINDy, CalDerivative
     using DifferentialEquations, ForwardDiff
     using Flux
     using Distributions

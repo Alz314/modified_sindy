@@ -10,9 +10,8 @@ module NewModuleName
     export alg # need to export new data type
     export solve_SINDy # also export any other functions you would like to be able to call elsewhere
 
-    # Must include these two lines (with the dots)
-    include("base.jl")
-    using ..SINDy_Base
+    # import functions from base.jl
+    import ..SINDy_Base: SINDy_Alg, Modified_SINDy_Problem, solve_SINDy # add any other functions you want (like sparsify)
 
 
     # New Data types
@@ -47,7 +46,7 @@ module NewModuleName
 
     # Examples
     ```julia
-    julia> # optionally write how this function should be called here
+    julia> # optionally write how this function should be called
     output
     ```
     """

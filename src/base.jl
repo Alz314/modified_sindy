@@ -1,7 +1,7 @@
 module SINDy_Base
     export Modified_SINDy_Problem, SINDy_Alg, Default_SINDy # types
     export SINDy_Problem # constructors
-    export solve_SINDy, sparsify, CalDerivative # functions
+    export solve_SINDy, sparsify, CalDerivative, SINDy_loss, _is_converged # functions
 
     using LinearAlgebra
 
@@ -63,7 +63,6 @@ module SINDy_Base
         
         # Initialize comparison values
         min_loss = 9999999999
-        best_iter = 0
         prev_smallinds = [1]
 
         # Next, perform regression, get an estimate of the selection matrix Ξes

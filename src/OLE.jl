@@ -1,9 +1,8 @@
 module OLE_Module
     export solve_SINDy
+    export OLE
 
-    include("base.jl")
-    import ..SINDy_Base.solve_SINDy
-    using ..SINDy_Base
+    import ..SINDy_Base: SINDy_Alg, Modified_SINDy_Problem, sparsify, solve_SINDy
     using Optimization , OptimizationOptimJL
 
 
