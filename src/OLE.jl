@@ -29,7 +29,7 @@ module OLE_Module
     
         function loss(x, p)
             prob.Θ = prob.Lib(prob.u, x)
-            Ξes, loss = sparsify(prob)
+            _, loss = sparsify(prob)
             return loss
         end
 
